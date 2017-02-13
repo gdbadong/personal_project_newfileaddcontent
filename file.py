@@ -23,31 +23,43 @@ def check_exists(filename):
 	else:
 		exists_create_newfile(filename)
 
-		# sample2 += exists(filename)
-		# print sample2
-
-
 def exists_create_newfile(filename):
 	text = open(filename,'r')
 	new_file = raw_input('name new_file: ')
+	sec_checker(new_file,text,filename)
+
+def sec_checker(new_file,text,filename):
 	if os.path.isfile(new_file):
-		text2 = open(new_file,'r')
-		print text2.write(exists(filename))
+		print 'file name already existing, use existing and add new content?'
+		yn = raw_input('yes or no: ')
+		if yn == 'yes':
+			text2 = open(new_file,'r+')
+			z = ""
+			for x in text2:
+				z += x
+			text2.seek(0)
+			text2.write(z + exists(filename))
+		elif yn == 'no':
+			new_file1 = raw_input('name new_file: ')
+			while os.path.isfile(new_file1):
+				fn = raw_input('file still exists, enter new filename')
+				new_file1 = fn
+			fn2 = open(new_file1,'a+')
+			fn2.write(exists(filename))
 	else:
 		text2 = open(new_file,'w+')
-	# y = exists(filename)
-		print text2.write(exists(filename))
-	# print text2.write(y)
+		text2.write(exists(filename))
 
 
 
 def exists(filename):
 	text = open(filename,'r')
-	t = ''
+	return save(text)
+
+def save(text):
+	t = "" 
 	for x in text:
 		t += x
-	text.seek(0)
-	t += text.read()
 	return t
 	
 
@@ -56,7 +68,6 @@ def not_exists_createfile(filename):
 	create = open(filename,'w+')
 	y = add_content()
 	create.write(y)
-	# print create.write(y)
 
 def add_content():
 	t = ""
