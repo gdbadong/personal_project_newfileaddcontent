@@ -3,20 +3,9 @@
 import os
 import sys
 
-#check if your file exists
-# if your file exists then continue if not
-# then it asks you to give a filename and content
-
-# class file
-
-
 
 filename = raw_input('type filename with extension: ')
-# text2.write(exists(filename))
-t = ""
-t2 = ""
-sample = ""
-sample2 = ""
+
 def check_exists(filename):
 	if not os.path.isfile(filename):
 		not_exists_createfile(filename)
